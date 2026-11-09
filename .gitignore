@@ -5,3 +5,7 @@
 assets/maps-config.js
 .env
 .env.local
+
+# Cloudflare build output (tools/build-cloudflare.mjs) and wrangler state
+dist/
+.wrangler/

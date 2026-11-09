@@ -1,0 +1,30 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "palm-leaf-partners",
+  "account_id": "c9081c24f987d8475c3ed0d0faef7dea",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-09-01",
+
+  // Static site, built by tools/build-cloudflare.mjs. Clean URLs:
+  // /pages/about serves pages/about.html, and /pages/about.html and
+  // /pages/about/ redirect to /pages/about (as Vercel's cleanUrls +
+  // trailingSlash:false did). Security/cache headers live in dist/_headers.
+  "assets": {
+    "directory": "dist",
+    "binding": "ASSETS",
+    "html_handling": "drop-trailing-slash",
+    "not_found_handling": "none",
+    // Only the private Mboka showcase reaches the Worker (Basic Auth gate).
+    "run_worker_first": ["/pages/mboka/*"]
+  },
+
+  // Optional secret: MBOKA_PAGE_PASSWORD (overrides the baked-in hash).
+
+  // Cloudflare manages these DNS records and certificates.
+  "routes": [
+    { "pattern": "palmleafpartners.com", "custom_domain": true },
+    { "pattern": "www.palmleafpartners.com", "custom_domain": true }
+  ],
+  "workers_dev": true,
+  "observability": { "enabled": true }
+}
