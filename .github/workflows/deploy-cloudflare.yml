@@ -1,0 +1,30 @@
+# Deploys palmleafpartners.com (Cloudflare Worker "palm-leaf-partners") on
+# every push to main. Replaces Vercel's git integration.
+# Repo secrets: CLOUDFLARE_API_TOKEN, GOOGLE_MAPS_API_KEY.
+name: Deploy to Cloudflare
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Build dist/
+        run: node tools/build-cloudflare.mjs
+        env:
+          GOOGLE_MAPS_API_KEY: ${{ secrets.GOOGLE_MAPS_API_KEY }}
+      - name: Deploy
+        run: npx -y wrangler@4.159.0 deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
