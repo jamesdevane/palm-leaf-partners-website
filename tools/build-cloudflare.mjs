@@ -27,6 +27,8 @@ const EXCLUDE = [
   /^wrangler\.jsonc$/,
   /^package(-lock)?\.json$/,
   /^README\.md$/,
+  /^CLAUDE\.md$/,
+  /^CLOUDFLARE-HOSTING\.md$/,
   /^middleware\.js$/, // replaced by worker/index.js
   /^vercel\.json$/,
   // Over the 25 MiB per-file limit and not linked from any page.
