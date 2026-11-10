@@ -11,7 +11,7 @@ Look for these sites in Cloudflare (account `c9081c24f987d8475c3ed0d0faef7dea`),
 | palmleafpartners.com, www. | `palm-leaf-partners` | palm-leaf-partners-website | Auto on push to `main` (GitHub Actions) |
 | portal., careers., communities., opportunities. | `palm-leaf-portal` | palm-leaf-portal | Auto on push to `main` (GitHub Actions) |
 | thecobbles. | `cobbles-ministry-website` | cobbles-ministry-website | `wrangler deploy` (see that repo) |
-| callcenter-demo. | `callcenter-demo` | DRC-Call-Center | `npm run deploy:worker` (see docs/DEPLOY_WORKERS.md) |
+| callcenter-demo. | `callcenter-demo` | DRC-Call-Center | Auto on push to `main` (GitHub Actions) |
 | internationalpeacememorial.org, www. | `international-memorial-of-peace(-www)` | DRC-International-Memorial-of-Peace | see that repo |
 
 - **DNS:** every zone is in Cloudflare (nameservers kay/buck.ns.cloudflare.com). The Workers hostnames above are
